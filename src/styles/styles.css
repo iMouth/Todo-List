@@ -29,13 +29,14 @@ body {
 }
 
 #add-project {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
-  margin: 1rem auto;
+  margin: 1rem 1rem 1rem auto;
   padding: 1rem;
   font-size: 1rem;
   background-color: transparent;
+  border: transparent;
   cursor: pointer;
 }
 
@@ -44,6 +45,20 @@ body {
   margin-right: 1rem;
 }
 
+#project-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem;
+}
+
+#project-form label {
+  margin-right: 1rem;
+}
+
+#project-form :first-child input {
+  font-size: 1rem;
+}
 #todo {
   background-color: rgb(221, 221, 221);
   height: 100%;
