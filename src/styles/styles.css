@@ -1,0 +1,51 @@
+body {
+  background-color: black;
+}
+
+#wrapper {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  font-family: "Poiret One", cursive;
+}
+
+#projects {
+  background-color: rgb(184, 184, 184);
+  height: 100%;
+  width: 25%;
+}
+
+#title {
+  text-align: center;
+  font-size: 4rem;
+  padding: 4rem 0 1rem 0;
+}
+
+.divider {
+  background-color: black;
+  margin: 0 auto;
+  width: 20rem;
+  height: 0.2rem;
+}
+
+#add-project {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem auto;
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.plus {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
+#todo {
+  background-color: rgb(221, 221, 221);
+  height: 100%;
+  width: 75%;
+}
