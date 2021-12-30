@@ -21,18 +21,22 @@
         <button id="add-project"><span class="plus">+</span>Add Project</button>
         <form id="project-form">
           <label>
-            <input type="text" name="project-name" placeholder="project name" />
+            <input
+              type="text"
+              name="project-name"
+              placeholder="project name"
+              id="project-name"
+              required
+            />
           </label>
           <label>
-            <input type="button" name="add" value="Add" />
+            <input type="button" name="add" value="Add" id="add" />
           </label>
           <label>
-            <input type="button" name="cancel" value="Cancel" />
+            <input type="button" name="cancel" value="Cancel" id="cancel" />
           </label>
         </form>
-        <div id="projects">
-          <button id="project">- Shopping List -</button>
-        </div>
+        <div id="projects"></div>
       </div>
       <div id="todo"></div>
     </div>

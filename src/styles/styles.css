@@ -31,7 +31,7 @@ body {
 }
 
 #add-project {
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   margin: 1rem 1rem 1rem auto;
@@ -49,10 +49,11 @@ body {
 }
 
 #project-form {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   margin: 2rem;
+  margin-top: 2.65rem;
 }
 
 #project-form label {
@@ -69,6 +70,7 @@ body {
 
 #projects {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
