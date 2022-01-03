@@ -11,7 +11,7 @@ body {
 }
 
 #project-wrap {
-  background-color: rgb(214, 214, 214);
+  background-color: rgb(243, 95, 95);
   height: 100%;
   width: 25%;
   border-right: 1px solid black;
@@ -86,7 +86,31 @@ body {
 }
 
 #todo {
-  background-color: rgb(221, 221, 221);
+  background-color: rgb(255, 255, 255);
   height: 100%;
-  width: 75%;
+  width: 70%;
+}
+
+#priority {
+  background-color: red;
+  width: 1rem;
+  height: 1rem;
+}
+
+#task {
+  display: flex;
+  align-items: center;
+  margin-left: 3rem;
+}
+
+#name {
+  font-size: 2rem;
+}
+
+#details {
+  margin-left: auto;
+}
+
+#delete {
+  margin-right: 3rem;
 }
