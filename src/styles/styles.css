@@ -3,17 +3,16 @@ body {
 }
 
 #wrapper {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
+  display: grid;
   font-family: "Poiret One", cursive;
   caret-color: transparent;
+  grid-template-columns: 1fr 3fr;
+  height: 100vh;
 }
 
 #project-wrap {
+  grid-column: 1/2;
   background-color: rgb(243, 95, 95);
-  height: 100%;
-  width: 25%;
   border-right: 1px solid black;
 }
 
@@ -86,9 +85,8 @@ body {
 }
 
 #todo {
+  grid-column: 2/-1;
   background-color: rgb(255, 255, 255);
-  height: 100%;
-  width: 70%;
 }
 
 #priority {
