@@ -1,5 +1,6 @@
 import { add } from "date-fns";
 import css from "./styles/styles.css";
+import "./styles/normalize.css";
 
 function addProject() {
   let projects = document.getElementById("projects");
