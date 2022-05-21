@@ -55,6 +55,43 @@
           <button type="button" id="add-task">+</button>
         </div>
       </div>
+      <div class="form-box">
+        <div class="form-modal">
+          <div class="form-title">Add Task</div>
+          <div id="add-form">
+            <input
+              class=""
+              type="text"
+              placeholder="task name"
+              id="task-name"
+              required
+            />
+            <textarea
+              maxlength="200"
+              placeholder="task description"
+              id="task-desc"
+              rows="7"
+              required
+            ></textarea>
+            <input
+              type="date"
+              placeholder="task-date"
+              id="task-date"
+              required
+            />
+            <select id="priority-list" required>
+              <option selected disabled hidden>Select a priority</option>
+              <option>Low</option>
+              <option>Medium</option>
+              <option>High</option>
+            </select>
+            <div class="submission">
+              <button>Cancel</button>
+              <button>Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="main.js"></script>
   </body>
