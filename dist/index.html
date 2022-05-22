@@ -39,28 +39,27 @@
         <div id="projects"></div>
       </div>
       <div id="todo">
-        <div id="task">
-          <div id="priority"></div>
-          <p id="name">Go to sleep</p>
-          <button id="details">Details</button>
-          <p id="date">July 18th</p>
-          <button id="edit">
-            <img src="../dist/img/edit.png" id="edit-icon" />
+        <div class="task">
+          <div class="priority"></div>
+          <p class="name">Go to sleep</p>
+          <button class="details">Details</button>
+          <p class="date">July 18th</p>
+          <button class="edit">
+            <img src="../dist/img/edit.png" class="edit-icon" />
           </button>
-          <button id="delete">
-            <img src="../dist/img/trash.png" id="delete-icon" />
+          <button class="delete">
+            <img src="../dist/img/trash.png" class="delete-icon" />
           </button>
         </div>
-        <div id="add">
+        <div class="add">
           <button type="button" id="add-task">+</button>
         </div>
       </div>
-      <div class="form-box">
+      <div id="form-box">
         <div class="form-modal">
           <div class="form-title">Add Task</div>
           <div id="add-form">
             <input
-              class=""
               type="text"
               placeholder="task name"
               id="task-name"
@@ -86,7 +85,7 @@
               <option>High</option>
             </select>
             <div class="submission">
-              <button>Cancel</button>
+              <button id="cancel-btn">Cancel</button>
               <button>Add</button>
             </div>
           </div>
