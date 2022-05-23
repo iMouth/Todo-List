@@ -1,4 +1,4 @@
-import { add } from "date-fns";
+import { add, format } from "date-fns";
 import css from "./styles/styles.css";
 import "./styles/normalize.css";
 
@@ -65,30 +65,49 @@ function changeTaskView() {
   }
 }
 
-function addTask() {
+function addTask(nameText, dateText, priorityChoice) {
   const todo = document.getElementById("todo");
 
   const task = document.createElement("div");
   task.classList.add("task");
+  todo.appendChild(task);
 
   const priority = document.createElement("div");
   priority.classList.add("priority");
+  switch (priorityChoice) {
+    case "Low":
+      priority.style.backgroundColor = "lime";
+      break;
+    case "Medium":
+      priority.style.backgroundColor = "goldenrod";
+      break;
+    case "High":
+      priority.style.backgroundColor = "crimson";
+      break;
+  }
   task.appendChild(priority);
 
   const name = document.createElement("p");
   name.classList.add("name");
-  name.textContent = "Go to work";
+  name.textContent = nameText;
+  name.onclick = function finishedTask() {
+    if (name.style.textDecoration == "line-through") {
+      name.style.textDecoration = "none";
+    } else {
+      name.style.textDecoration = "line-through";
+    }
+  };
   task.appendChild(name);
+
+  const date = document.createElement("p");
+  date.classList.add("date");
+  date.textContent = dateText;
+  task.appendChild(date);
 
   const details = document.createElement("button");
   details.classList.add("details");
   details.textContent = "Details";
   task.appendChild(details);
-
-  const date = document.createElement("p");
-  date.classList.add("date");
-  date.textContent = "July 19th";
-  task.appendChild(date);
 
   const edit = document.createElement("button");
   edit.classList.add("edit");
@@ -105,15 +124,26 @@ function addTask() {
   deleteIcon.setAttribute("src", "../dist/img/trash.png");
   deleteBtn.appendChild(deleteIcon);
   task.appendChild(deleteBtn);
+}
 
-  todo.appendChild(task);
+function taskClick(e) {
+  e.preventDefault();
+  changeTaskView();
+  const taskName = document.getElementById("task-name").value;
+  const taskDesc = document.getElementById("task-desc").value;
+  const taskDate = document.getElementById("task-date").value;
+  const taskPriority = document.getElementById("priority-list").value;
+  const date = taskDate.split("-");
+  const dateFormat = format(new Date(date[0], date[1], date[2]), "MMM do");
+  document.getElementById("add-form").reset();
+  addTask(taskName, dateFormat, taskPriority);
 }
 
 let curProject = null;
 makeExample();
-addTask();
 document.getElementById("add").addEventListener("click", addProject);
 document.getElementById("cancel").addEventListener("click", changeView);
 document.getElementById("add-project").addEventListener("click", changeView);
 document.getElementById("add-task").addEventListener("click", changeTaskView);
 document.getElementById("cancel-btn").addEventListener("click", changeTaskView);
+document.getElementById("add-form").addEventListener("submit", taskClick);

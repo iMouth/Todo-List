@@ -39,18 +39,6 @@
         <div id="projects"></div>
       </div>
       <div id="todo">
-        <div class="task">
-          <div class="priority"></div>
-          <p class="name">Go to sleep</p>
-          <button class="details">Details</button>
-          <p class="date">July 18th</p>
-          <button class="edit">
-            <img src="../dist/img/edit.png" class="edit-icon" />
-          </button>
-          <button class="delete">
-            <img src="../dist/img/trash.png" class="delete-icon" />
-          </button>
-        </div>
         <div class="add">
           <button type="button" id="add-task">+</button>
         </div>
@@ -58,7 +46,7 @@
       <div id="form-box">
         <div class="form-modal">
           <div class="form-title">Add Task</div>
-          <div id="add-form">
+          <form id="add-form">
             <input
               type="text"
               placeholder="task name"
@@ -70,7 +58,6 @@
               placeholder="task description"
               id="task-desc"
               rows="7"
-              required
             ></textarea>
             <input
               type="date"
@@ -79,16 +66,16 @@
               required
             />
             <select id="priority-list" required>
-              <option selected disabled hidden>Select a priority</option>
-              <option>Low</option>
-              <option>Medium</option>
-              <option>High</option>
+              <option value="" selected disabled>Select a priority</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
             </select>
             <div class="submission">
               <button id="cancel-btn">Cancel</button>
-              <button>Add</button>
+              <button type="submit" id="add-task-btn">Add</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
