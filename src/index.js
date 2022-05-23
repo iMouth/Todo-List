@@ -1,6 +1,9 @@
 import { add, format } from "date-fns";
 import css from "./styles/styles.css";
 import "./styles/normalize.css";
+import "./styles/task.css";
+import "./styles/details.css";
+import "./styles/todo.css";
 
 function addProject() {
   let projects = document.getElementById("projects");
@@ -57,7 +60,11 @@ function makeExample() {
 }
 
 function changeTaskView() {
-  let taskModal = document.getElementById("form-box");
+  // @todo Clear form when cancel is clicked
+  const taskModal = document.getElementById("form-box");
+  const projectWrap = document.getElementById("project-wrap");
+  const todo = document.getElementById("todo");
+  changeOpacitiy();
   if (taskModal.style.display == "flex") {
     taskModal.style.display = "none";
   } else {
@@ -126,15 +133,29 @@ function addTask(nameText, dateText, priorityChoice) {
   task.appendChild(deleteBtn);
 }
 
+function changeOpacitiy() {
+  const projectWrap = document.getElementById("project-wrap");
+  const todo = document.getElementById("todo");
+
+  if (projectWrap.style.opacity == "0.5") {
+    projectWrap.style.opacity = "1.0";
+    todo.style.opacity = "1.0";
+  } else {
+    projectWrap.style.opacity = "0.5";
+    todo.style.opacity = "0.5";
+  }
+}
+
 function taskClick(e) {
   e.preventDefault();
   changeTaskView();
+
   const taskName = document.getElementById("task-name").value;
   const taskDesc = document.getElementById("task-desc").value;
   const taskDate = document.getElementById("task-date").value;
-  const taskPriority = document.getElementById("priority-list").value;
   const date = taskDate.split("-");
   const dateFormat = format(new Date(date[0], date[1], date[2]), "MMM do");
+  const taskPriority = document.getElementById("priority-list").value;
   document.getElementById("add-form").reset();
   addTask(taskName, dateFormat, taskPriority);
 }
