@@ -9,7 +9,7 @@
   grid-row: 1/2;
   z-index: 10;
   margin: 1rem;
-  margin-left: 10vw;
+  margin-left: 12.5vw;
 }
 
 .details-modal {
@@ -17,4 +17,32 @@
   border-radius: 20px;
   outline: 5px solid black;
   padding: 2rem;
+}
+
+.details-title {
+  font-size: 3rem;
+  margin: 0;
+  text-align: center;
+}
+
+.details-exit {
+  text-align: right;
+  height: 10px;
+}
+
+.details-exit button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transform: translate(1rem, -1rem);
+  font-size: 1.2rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.details-info {
+  width: clamp(12rem, 30vw, 20rem);
+}
+
+.details-info > p:not(:first-child) {
+  font-size: 1.5rem;
 }

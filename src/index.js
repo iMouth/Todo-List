@@ -39,13 +39,8 @@ function removeCurrent() {
 function changeView() {
   let projectBtn = document.getElementById("add-project");
   let projectForm = document.getElementById("project-form");
-  if (projectBtn.style.display == "none") {
-    projectBtn.style.display = "flex";
-    projectForm.style.display = "none";
-  } else {
-    projectBtn.style.display = "none";
-    projectForm.style.display = "flex";
-  }
+  changeDisplay(projectBtn);
+  changeDisplay(projectForm);
   document.getElementById("project-name").value = "";
 }
 
@@ -62,14 +57,8 @@ function makeExample() {
 function changeTaskView() {
   // @todo Clear form when cancel is clicked
   const taskModal = document.getElementById("form-box");
-  const projectWrap = document.getElementById("project-wrap");
-  const todo = document.getElementById("todo");
   changeOpacitiy();
-  if (taskModal.style.display == "flex") {
-    taskModal.style.display = "none";
-  } else {
-    taskModal.style.display = "flex";
-  }
+  changeDisplay(taskModal);
 }
 
 function addTask(nameText, dateText, priorityChoice) {
@@ -114,6 +103,7 @@ function addTask(nameText, dateText, priorityChoice) {
   const details = document.createElement("button");
   details.classList.add("details");
   details.textContent = "Details";
+  // @todo: change details for the clicked todo item
   task.appendChild(details);
 
   const edit = document.createElement("button");
@@ -146,10 +136,17 @@ function changeOpacitiy() {
   }
 }
 
+function changeDisplay(item) {
+  if (item.style.display == "flex") {
+    item.style.display = "none";
+  } else {
+    item.style.display = "flex";
+  }
+}
+
 function taskClick(e) {
   e.preventDefault();
   changeTaskView();
-
   const taskName = document.getElementById("task-name").value;
   const taskDesc = document.getElementById("task-desc").value;
   const taskDate = document.getElementById("task-date").value;
@@ -160,6 +157,12 @@ function taskClick(e) {
   addTask(taskName, dateFormat, taskPriority);
 }
 
+function changeDetailsView() {
+  const details = document.getElementById("details-box");
+  changeOpacitiy();
+  changeDisplay(details);
+}
+
 let curProject = null;
 makeExample();
 document.getElementById("add").addEventListener("click", addProject);
@@ -168,3 +171,6 @@ document.getElementById("add-project").addEventListener("click", changeView);
 document.getElementById("add-task").addEventListener("click", changeTaskView);
 document.getElementById("cancel-btn").addEventListener("click", changeTaskView);
 document.getElementById("add-form").addEventListener("submit", taskClick);
+document
+  .getElementById("details-exit")
+  .addEventListener("click", changeDetailsView);
