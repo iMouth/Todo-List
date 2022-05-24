@@ -1,4 +1,4 @@
-import { add, format } from "date-fns";
+import { format } from "date-fns";
 import css from "./styles/styles.css";
 import "./styles/normalize.css";
 import "./styles/task.css";
@@ -14,51 +14,64 @@ function addProject() {
   let projectBtn = document.createElement("button");
   projectBtn.setAttribute("id", "project");
   projectBtn.textContent = projectName;
-  projectBtn.addEventListener("click", makeCurrent, projectBtn);
   projects.appendChild(projectBtn);
-  changeView();
+  projectBtn.addEventListener("click", makeCurrent, projectBtn);
+  changeProjectView();
+  removeCurrent();
+  todoDict[projectName] = {};
+
+  curProject = projectBtn.textContent;
 }
 
 function makeCurrent(projectBtn) {
   removeCurrent();
-  let name = projectBtn.target.innerHTML;
-  name = "- " + name + " -";
-  projectBtn.target.innerHTML = name;
-  curProject = projectBtn.target;
+
+  let name = projectBtn.path[0].textContent;
+  curProject = name;
+  projectBtn.path[0].textContent = name;
+  setUpTasks();
 }
 
 function removeCurrent() {
+  const tasks = document.querySelectorAll(".task");
+  tasks.forEach((task) => {
+    task.remove();
+  });
   if (curProject == null) {
     return;
   }
-  let name = curProject.textContent;
-  name = name.substring(2, name.length - 2);
-  curProject.textContent = name;
 }
 
-function changeView() {
+function changeProjectView() {
   let projectBtn = document.getElementById("add-project");
   let projectForm = document.getElementById("project-form");
-  changeDisplay(projectBtn);
-  changeDisplay(projectForm);
-  document.getElementById("project-name").value = "";
+  if (projectBtn.style.display == "none") {
+    projectBtn.style.display = "flex";
+    projectForm.style.display = "none";
+  } else {
+    projectBtn.style.display = "none";
+    projectForm.style.display = "flex";
+  }
+  document.getElementById("project-form").reset();
 }
 
-function makeExample() {
-  let projects = document.getElementById("projects");
-  let projectBtn = document.createElement("button");
-  projectBtn.setAttribute("id", "project");
-  projectBtn.textContent = "- Example -";
-  projectBtn.addEventListener("click", makeCurrent, projectBtn);
-  projects.appendChild(projectBtn);
-  curProject = projectBtn;
-}
+// function makeExample() {
+//   let projects = document.getElementById("projects");
+//   let projectBtn = document.createElement("button");
+//   projectBtn.setAttribute("id", "project");
+//   projectBtn.textContent = "- Example -";
+//   projectBtn.addEventListener("click", makeCurrent, projectBtn);
+//   projects.appendChild(projectBtn);
+//   todoDict["Example"] = {};
+// }
 
 function changeTaskView() {
   // @todo Clear form when cancel is clicked
-  const taskModal = document.getElementById("form-box");
+  if (curProject == null) {
+    return;
+  }
   changeOpacitiy();
-  changeDisplay(taskModal);
+  changeDisplay(document.getElementById("form-box"));
 }
 
 function addTask(nameText, dateText, priorityChoice) {
@@ -126,7 +139,6 @@ function addTask(nameText, dateText, priorityChoice) {
 function changeOpacitiy() {
   const projectWrap = document.getElementById("project-wrap");
   const todo = document.getElementById("todo");
-
   if (projectWrap.style.opacity == "0.5") {
     projectWrap.style.opacity = "1.0";
     todo.style.opacity = "1.0";
@@ -144,6 +156,22 @@ function changeDisplay(item) {
   }
 }
 
+function changeDetailsView() {
+  const details = document.getElementById("details-box");
+  changeOpacitiy();
+  changeDisplay(details);
+}
+
+function setUpTasks() {
+  let projectName = curProject;
+  const tasks = todoDict[projectName];
+  if (tasks != null) {
+    for (const [key, value] of Object.entries(tasks)) {
+      addTask(value.name, value.date, value.priority);
+    }
+  }
+}
+
 function taskClick(e) {
   e.preventDefault();
   changeTaskView();
@@ -154,20 +182,27 @@ function taskClick(e) {
   const dateFormat = format(new Date(date[0], date[1], date[2]), "MMM do");
   const taskPriority = document.getElementById("priority-list").value;
   document.getElementById("add-form").reset();
-  addTask(taskName, dateFormat, taskPriority);
-}
+  addTask(taskName, dateFormat, taskPriority, taskDesc);
 
-function changeDetailsView() {
-  const details = document.getElementById("details-box");
-  changeOpacitiy();
-  changeDisplay(details);
+  let projectName = curProject;
+
+  let info = {
+    name: taskName,
+    date: dateFormat,
+    priority: taskPriority,
+    desc: taskDesc,
+  };
+  todoDict[projectName][taskName] = info;
 }
 
 let curProject = null;
-makeExample();
+let todoDict = {};
+// makeExample();
 document.getElementById("add").addEventListener("click", addProject);
-document.getElementById("cancel").addEventListener("click", changeView);
-document.getElementById("add-project").addEventListener("click", changeView);
+document.getElementById("cancel").addEventListener("click", changeProjectView);
+document
+  .getElementById("add-project")
+  .addEventListener("click", changeProjectView);
 document.getElementById("add-task").addEventListener("click", changeTaskView);
 document.getElementById("cancel-btn").addEventListener("click", changeTaskView);
 document.getElementById("add-form").addEventListener("submit", taskClick);
