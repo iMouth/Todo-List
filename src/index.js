@@ -16,19 +16,17 @@ function addProject() {
   projectBtn.textContent = projectName;
   projects.appendChild(projectBtn);
   projectBtn.addEventListener("click", makeCurrent, projectBtn);
+
   changeProjectView();
   removeCurrent();
   todoDict[projectName] = {};
-
   curProject = projectBtn.textContent;
 }
 
 function makeCurrent(projectBtn) {
   removeCurrent();
-
-  let name = projectBtn.path[0].textContent;
-  curProject = name;
-  projectBtn.path[0].textContent = name;
+  curProject = projectBtn.path[0].textContent;
+  projectBtn.path[0].textContent = curProject;
   setUpTasks();
 }
 
@@ -37,9 +35,6 @@ function removeCurrent() {
   tasks.forEach((task) => {
     task.remove();
   });
-  if (curProject == null) {
-    return;
-  }
 }
 
 function changeProjectView() {
@@ -54,16 +49,6 @@ function changeProjectView() {
   }
   document.getElementById("project-form").reset();
 }
-
-// function makeExample() {
-//   let projects = document.getElementById("projects");
-//   let projectBtn = document.createElement("button");
-//   projectBtn.setAttribute("id", "project");
-//   projectBtn.textContent = "- Example -";
-//   projectBtn.addEventListener("click", makeCurrent, projectBtn);
-//   projects.appendChild(projectBtn);
-//   todoDict["Example"] = {};
-// }
 
 function changeTaskView() {
   // @todo Clear form when cancel is clicked
@@ -116,7 +101,7 @@ function addTask(nameText, dateText, priorityChoice) {
   const details = document.createElement("button");
   details.classList.add("details");
   details.textContent = "Details";
-  // @todo: change details for the clicked todo item
+  details.addEventListener("click", setDetails);
   task.appendChild(details);
 
   const edit = document.createElement("button");
@@ -157,9 +142,8 @@ function changeDisplay(item) {
 }
 
 function changeDetailsView() {
-  const details = document.getElementById("details-box");
   changeOpacitiy();
-  changeDisplay(details);
+  changeDisplay(document.getElementById("details-box"));
 }
 
 function setUpTasks() {
@@ -170,6 +154,21 @@ function setUpTasks() {
       addTask(value.name, value.date, value.priority);
     }
   }
+}
+
+function setDetails(e) {
+  changeDetailsView();
+  let name = e.path[1].childNodes[1].innerText;
+  let info = todoDict[curProject][name];
+  document.getElementById("details-title").textContent = info.name;
+  document.getElementById("details-project").textContent =
+    "Project: " + curProject;
+  document.getElementById("details-dueDate").textContent =
+    "Due Date: " + info.date;
+  document.getElementById("details-priority").textContent =
+    "Priority: " + info.priority;
+  document.getElementById("details-desc").textContent =
+    "Description: " + info.desc;
 }
 
 function taskClick(e) {
@@ -197,7 +196,6 @@ function taskClick(e) {
 
 let curProject = null;
 let todoDict = {};
-// makeExample();
 document.getElementById("add").addEventListener("click", addProject);
 document.getElementById("cancel").addEventListener("click", changeProjectView);
 document

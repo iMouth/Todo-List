@@ -19,7 +19,7 @@
   padding: 2rem;
 }
 
-.details-title {
+.details-info > p:first-child {
   font-size: 3rem;
   margin: 0;
   text-align: center;
