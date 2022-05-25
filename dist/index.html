@@ -18,7 +18,9 @@
       <div id="project-wrap">
         <div id="title">Minimal List</div>
         <div class="divider"></div>
-        <button id="add-project"><span class="plus">+</span>Add Project</button>
+        <button id="add-project">
+          <span class="plus-minus">±</span>Project
+        </button>
         <form id="project-form">
           <label>
             <input
@@ -30,7 +32,7 @@
             />
           </label>
           <label>
-            <input type="button" name="add" value="Add" id="add" />
+            <input type="button" name="add" value="±" id="add" />
           </label>
           <label>
             <input type="button" name="cancel" value="Cancel" id="cancel" />
@@ -90,6 +92,41 @@
             <p id="details-priority">Priority: High</p>
             <p id="details-desc">Description: I like to walk I like to walk</p>
           </div>
+        </div>
+      </div>
+      <div id="edit-box">
+        <div class="edit-modal">
+          <div class="edit-title">Edit Task</div>
+          <form id="edit-form">
+            <input
+              type="text"
+              placeholder="task name"
+              id="edit-name"
+              required
+            />
+            <textarea
+              maxlength="200"
+              placeholder="task description"
+              id="edit-desc"
+              rows="7"
+            ></textarea>
+            <input
+              type="date"
+              placeholder="task-date"
+              id="edit-date"
+              required
+            />
+            <select id="priority-list-edit" required>
+              <option value="" selected disabled>Select a priority</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+            <div class="submission">
+              <button type="button" id="cancel-btn-edit">Cancel</button>
+              <button type="submit" id="edit-task-btn">Edit</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

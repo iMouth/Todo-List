@@ -1,0 +1,43 @@
+#edit-box {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  grid-column: 1/3;
+  grid-row: 1/2;
+  z-index: 10;
+  margin: 1rem;
+  margin-left: 10vw;
+}
+
+.edit-modal {
+  background-color: rgb(180, 135, 200);
+  border-radius: 20px;
+  outline: 5px solid black;
+}
+
+.edit-title {
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+  margin-top: 3rem;
+}
+
+#edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem;
+}
+
+#edit-form > * {
+  margin: 15px;
+  width: 25%;
+  min-width: 200px;
+}
+
+#edit-name {
+  font-size: 1.3rem;
+}

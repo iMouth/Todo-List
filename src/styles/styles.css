@@ -31,6 +31,10 @@ body {
   height: 0.2rem;
 }
 
+#add {
+  font-size: 1.2rem;
+}
+
 #add-project {
   display: flex;
   align-items: center;
@@ -44,8 +48,8 @@ body {
   font-family: "Poiret One", cursive;
 }
 
-.plus {
-  font-size: 2rem;
+.plus-minus {
+  font-size: 3rem;
   margin-right: 1rem;
 }
 
