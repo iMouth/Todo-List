@@ -118,6 +118,7 @@ function addTask(nameText, dateText, priorityChoice) {
   deleteIcon.classList.add("delete-icon");
   deleteIcon.setAttribute("src", "../dist/img/trash.png");
   deleteBtn.appendChild(deleteIcon);
+  deleteBtn.addEventListener("click", deleteTask);
   task.appendChild(deleteBtn);
 }
 
@@ -154,6 +155,16 @@ function setUpTasks() {
       addTask(value.name, value.date, value.priority);
     }
   }
+}
+
+function deleteTask(e) {
+  console.log(e);
+  console.log(todoDict);
+  let name = e.path[2].childNodes[1].innerText;
+  console.log(name);
+  delete todoDict[curProject][name];
+  console.log(todoDict);
+  e.path[2].remove();
 }
 
 function setDetails(e) {
